@@ -4,9 +4,10 @@ import com.example.baganmyay.model.entity.ApplicationForm;
 import com.example.baganmyay.repository.ApplicationFormRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/api/applications")
 @RequiredArgsConstructor
 @Slf4j
@@ -14,17 +15,12 @@ public class ApplicationFormController {
 
     private final ApplicationFormRepository applicationRepository;
 
-    @PostMapping
-    public String saveApplication(@RequestParam String name,
-                                  @RequestParam String email) {
+    @PostMapping("/submit")
+    public String saveApplication(ApplicationForm form) {
 
-        ApplicationForm app = new ApplicationForm();
-        app.setName(name);
-        app.setEmail(email);
+        applicationRepository.save(form);
 
-        applicationRepository.save(app);
-
-        return "Saved successfully";
+        return "redirect:/success.html";
     }
 
 }

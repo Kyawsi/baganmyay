@@ -13,12 +13,23 @@ public class ApplicationForm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
     private String name;
-    @Column(name = "email")
-    private String email;
+
+    private Integer age;
+
+    private String phone;
+
+    private String socialMedia;
+
+    private String gender;
+
+    private String nrcPassport;
+
+    @Column(columnDefinition = "TEXT")
+    private String address;
+
+    private String contestDay;
 
 }
